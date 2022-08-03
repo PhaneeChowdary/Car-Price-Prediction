@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car-Price-Prediction</title>
+
+    <style>
+        body {
+            background-image: url("static/images/cars.jpg");
+            max-width: 100%;
+            height: auto;
+            color: rgb(29, 173, 10);
+            text-align: center;
+        }
+    
+        form {
+            margin: 2rem;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    
+        input,select,button {
+            border-radius: 10px;
+            text-align: center;
+            height: 25px;
+            margin: 1.5rem;
+        }
+    
+        img {
+            width: 10%;
+            /* height: auto; */
+        }
+    </style>
+</head>
+<body>
+    <form  action="{{ url_for('predict')}}" method="post">
+        <h2>Predictive analysis</h2>
+        <label for ="Year">Year</label>
+        <input id="Year" name="Year" type="number"><br>
+        <label for ="PresentPrice">What is the Showroom Price?(In lakhs)</label>
+        <input id="PresentPrice" name="PresentPrice" required="required"><br>
+        <label for = "Kms">How Many Kilometers Drived</label>
+        <input id="Kms" name="Kilometers" required="required"><br>
+        <label for = "Owners">How much owners previously had the car(0 or 1 or 3) ?</label>
+        <input id="Owners" name="Owners" required="required"><br>
+        <label for = "FuelType">What Is the Fuel type?</label>
+        <select name="FuelTypePetrol" id="fuel" required="required"><br>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="CNG">CNG</option>
+        </select><br>
+        <label for = "SellerType">Are you A Dealer or Individual</label>
+        <select name="SellerType" id="SellerType" required="required"><br>
+            <option value="Dealer">Dealer</option>
+            <option value="Individual">Individual</option>
+        </select><br>
+        <label for = "TransmissionManual">Transmission type</label>
+        <select name="TransmissionManual" id="TransmissionManual" required="required">
+            <option value="Mannual">Manual Car</option>
+            <option value="Automatic">Automatic Car</option>
+        </select><br>
+        <button id="sub" type="submit ">Calculate the Selling Price</button>
+        <h3 style="color: tomato;">{{ prediction_text }}</h3>
+    </form>
+</body>
+</html>
